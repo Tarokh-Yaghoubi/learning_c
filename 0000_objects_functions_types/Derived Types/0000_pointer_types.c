@@ -3,7 +3,7 @@
 *   Author: Tarokh-Yaghoubi
 *   Description:
 *       - Derived Types in the C programming language
-*       - Pointer Types, Arrays, Structures, Unions 
+*       - Pointer Types | How to define them, and use them 
 *
 */
 
@@ -53,7 +53,12 @@ main(void) {
         printf("%s [address iptr2 is holding ->  %p] [address iptr is holding %p]\n", "iptr2 and iptr are the same thing", (int*)iptr2, (int*)iptr);
         printf("%s [(address of i) -> (%p)]\n", "The address of 'i' is equivalent to the addresses that iptr and iptr2 are holding", (int*)&i);
     }
+   
     return EXIT_SUCCESS;
     
 }
+
+
+// NOTE : If a pointer is not pointing to a valid function or object, bad things may happen.
+
 
