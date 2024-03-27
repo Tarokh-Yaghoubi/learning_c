@@ -78,3 +78,42 @@ void volatile_qualified(void) {
 // NOTE: Usage of volatile is important in scenarios where variables can be modified by external factors (e.g, hardware interrupts, memory-mapped I/O), and the compiler needs to
 // ensure that the most up-to-date value is used.
 
+// RESTRICT
+
+// In C, the restrict keyword is a type qualifier that can be used as a hint to the compiler to optimize pointer-based code. 
+// It indicates to the compiler that a pointer is the only means to access the data it points to within a particular scope. 
+// The purpose of restrict is to assist the compiler in performing more aggressive optimizations, 
+// particularly with loop optimizations and pointer aliasing.
+
+// Consider the following scenario:
+
+void func(int *a, int *b, int *c) {
+    for (int i = 0; i < 100; ++i) {
+        a[i] = b[i] + c[i];
+    }
+}
+
+
+// In this function, the pointers a, b, and c are passed as arguments. 
+// The compiler has no knowledge that these pointers do not overlap (i.e., they do not point to the same memory locations).
+// As a result, it may generate less efficient code due to concerns about pointer aliasing.
+
+// By using restrict, you can inform the compiler that the pointers do not alias each other, 
+// allowing it to perform more aggressive optimizations:
+
+void restrict_func(int *restrict a, int *restrict b, int *restrict c) {
+    for (int i = 0; i < 100; ++i) {
+        a[i] = b[i] + c[i];
+    }
+}
+
+// Here, the restrict keyword indicates that a, b, and c are not aliases, 
+// and each pointer is the only means to access the data it points to within the scope of the function. 
+// This enables the compiler to generate more optimized code, potentially by performing loop unrolling, 
+// reordering instructions, or other optimizations that rely on the absence of pointer aliasing.
+
+// restrict is typically used in performance-critical code where optimizing memory access patterns and 
+// reducing pointer aliasing can lead to significant performance improvements. 
+// It is commonly found in functions that operate on arrays or other large data structures, 
+// especially in numerical or computational code where performance is crucial.
+
