@@ -53,4 +53,28 @@ void const_qualified_ptr(void) {
 }
 
 
+// VOLATILE
+
+// Objects of volatile-qualified types serve a special purpose. Static volatile-qualified objects are used to model memory-mapped input/output (I/O) ports,
+// and static constant volatile-qualified objects model memory-mapped input ports such as a real-time clock.
+
+// The values stored in these objects may change without the knowledge of the compiler. For example, every time the value of a real-time clock is read, it may change,
+// even if the value has not been written to by the C program. Using a volatile-qualified type lets the compiler know that the value may change, and ensures that
+// every access to the real-time clock occurs (otherwise, an access to the real-time clock may be optimized away or replaced by a previously read and cached value).
+
+// In the following code:
+
+void volatile_qualified(void) {
+    volatile int port;
+    port = port;
+
+}
+
+// The keyword 'volatile' is used to inform the compiler that the variable 'port' may be changed at any time by "external sources that are not visible to the compiler".
+// This prevents the compiler from optimizing aways reads/writes to the variable, ensuring that the variable's value is always fetched from memory rather than relying on
+// cached value the compiler might have.
+
+// NOTE: volatile-qualified types are used for communications with signal handlers and with setjmp/longjmp.
+// NOTE: Usage of volatile is important in scenarios where variables can be modified by external factors (e.g, hardware interrupts, memory-mapped I/O), and the compiler needs to
+// ensure that the most up-to-date value is used.
 
