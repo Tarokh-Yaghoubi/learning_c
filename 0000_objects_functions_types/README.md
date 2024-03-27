@@ -8,7 +8,7 @@ This directory contains educational materials on various basic concepts in the C
 
 2. [Function Types, Function Declaration, and Definition in C](): This source covers different types of functions in C, including how to declare and define them.
 
-3. [Derived Types](): These sources discuss derived types in C, such as arrays, structures, and unions.
+3. [Derived Types](https://github.com/Tarokh-Yaghoubi/learning_c/tree/main/0000_objects_functions_types/Derived%20Types): These sources discuss derived types in C, such as arrays, structures, and unions.
 
 4. [Tags](): This source explains the concept of tags in C, including how to define structures and typedefs.
 
