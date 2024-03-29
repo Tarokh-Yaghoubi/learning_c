@@ -49,4 +49,9 @@ void valid_signed_ints(void) {
 
 }
 
+// UNSIGNED INTEGERS
+
+// Unsigned Integers have ranges that start at 0, and their upper bound is greater than that of the corresponding signed integer type.
+// Unsigned Integers are frequently used for counting items that may have large, nonnegative quantities.
+
 
