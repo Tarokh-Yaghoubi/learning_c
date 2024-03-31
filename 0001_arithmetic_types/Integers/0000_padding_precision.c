@@ -6,6 +6,12 @@
 *       - Padding and Precision, unsigned, signed int, How to declare and use them, and so on
 */
 
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <limit.h>
+
 // Each Integer type represents a finite range of integers.
 
 // signed integer, represents negative, zero and positive numbers.
@@ -53,5 +59,36 @@ void valid_signed_ints(void) {
 
 // Unsigned Integers have ranges that start at 0, and their upper bound is greater than that of the corresponding signed integer type.
 // Unsigned Integers are frequently used for counting items that may have large, nonnegative quantities.
+
+// Unsigned Integers do not require the sign to be represented and so generally provide 1 bit greater precision than the corresponding signed integer types.
+
+// Unsigned Integer values range from 0 to a maximum value that depends on the width of the type.
+// This maximum value is 2 ^ N where N is the width. For example; most x86 architectures use 32-bit integers with no padding bits, so an object of type unsigned int has a range 0 to 2 ^ 32 - 1
+// which is (4,294,967,295). The CONSTANT expression UINT_MAX from <limits.h> specifies the implementation-defined upper range for this type.
+
+// WRAP AROUND
+// WRAPAROUND occurs when you perform arithmetic operations that result in values too small (less than 0) or too large (greater than 2 ^ N - 1) to be represented as a particular unsigned integer type.
+// In this case, the value is reduced modulo the number that is one greater than the largest value that can be represented in the resulting type.
+// wraparound is a well-defined behavior in C.
+
+// NOTE: WHETHER IT IS A DEFECT IN YOUR CODE OR NOT, DEPENDS ON THE CONTEXT. IF YOU ARE COUNTING SOMETHING AND THE VALUE WRAPS, IT IS LIKELY TO BE AN ERROR
+// HOWEVER, THE USE OF WRAPAROUND IN CERTAIN ENCRYPTION ALGORITHMS IS INTENTIONAL.
+
+void wraparound_example(void) {
+    unsigned int ui = UINT_MAX; // 4,294,967,295 in x86
+    ui++;
+    printf("%u\n", ui);     // ui is 0
+    ui--;
+    printf("%u\n", ui);     // ui is now one less than the max UINT_MAX
+}
+
+// because of wraparound, and unsigned int can never be less than 0. It is easy to lose track of this and implement comparisons that are always true or always false.
+// for example, the 'i' in the following loop can never take on a negative value, so this loop will never terminate:
+
+void infinit_loop(int n) {
+    for (unsigned int i = n; i >= 0; --i) {
+        printf("%s\n", "WELCOME TO INFINITY!");
+    }
+}
 
 
