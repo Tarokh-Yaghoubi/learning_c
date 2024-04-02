@@ -91,3 +91,49 @@ int abs(int i) {
 
 }
 
+// INTEGER CONSTANTS
+
+// Integer Constants or Integer Literals, are constants we use to introduce particular integer values into a program.
+// For example, you might use them in a declaration or assignment to initialize a counter to 0.
+// C has three kind of integer constants that use different number systems, decimal, octal and hexadecimal constants.
+
+void different_constants(void) {
+    unsigned int ui = 71;
+    int si;
+    si = -13;
+
+    // if a constant starts with a 0, optionally followed by digits 0 through 7, it is an "octal constant"
+    int agent = 007;
+    int permissions = 0777;
+    // octal constants are convenient when dealing with 3-bit fields.
+
+    // HexaDecimal constant:
+
+    int burger = 0xDEADBEEF;    // hexadecimals are 0 through 9, A through F, prefexing with 0x or 0X
+
+
+}
+
+// you can append a suffix to your constant to specify its type. Without a suffix, a decimal constant is given the int type if it can be represented
+// as a value in that type. If it cannot be represented as an int, it will be represented as a long int or long long int.
+// The suffixes are U for unsigned, L for signed long, and LL for long long. These can be combined.
+// For example ULL means unsigned long long. Here are some examples:
+
+void constant_suffixes(void) {
+    unsigned int ui = 71U;
+    signed long int li = 34544336657866L;
+    unsigned long long ull = 77877675988232323ULL;
+
+    printf("%d\t%ld\t%llu\n", ui, li, ull);
+}
+
+// NOTE: If we do not use a suffix, and the integer constant is not of the required type, it will be implicitly converted.
+
+
+int main(void) {
+    different_constants();
+    constant_suffixes();
+
+    return EXIT_SUCCESS;
+}
+
