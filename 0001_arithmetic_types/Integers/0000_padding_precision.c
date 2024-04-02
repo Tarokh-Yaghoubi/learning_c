@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
-#include <limit.h>
+#include <limits.h>
 
 // Each Integer type represents a finite range of integers.
 
@@ -24,8 +24,8 @@
 // The number of bits used to represent a value of a given type, excluding padding but including the sign, is called the 'width' and is often denoted by N.
 // The 'precision' is the number of bits used to represent values, excluding sing and padding bits.
 
-// THE <limit.h> HEADER FILE
-// The <limit.h> header file provides the minimum and maximum representable values for the various integer types.
+// THE <limits.h> HEADER FILE
+// The <limits.h> header file provides the minimum and maximum representable values for the various integer types.
 // A "representable value" is one that can be represented in the Number of bits available to an object of a particular type.
 // NOTE: Values that cannot be represented will be diagnosed by the compiler or converted to a representable but different (incorrect) value.
 
@@ -64,7 +64,7 @@ void valid_signed_ints(void) {
 
 // Unsigned Integer values range from 0 to a maximum value that depends on the width of the type.
 // This maximum value is 2 ^ N where N is the width. For example; most x86 architectures use 32-bit integers with no padding bits, so an object of type unsigned int has a range 0 to 2 ^ 32 - 1
-// which is (4,294,967,295). The CONSTANT expression UINT_MAX from <limits.h> specifies the implementation-defined upper range for this type.
+// which is (4,294,967,295). The CONSTANT expression UINT_MAX from <limitss.h> specifies the implementation-defined upper range for this type.
 
 // WRAP AROUND
 // WRAPAROUND occurs when you perform arithmetic operations that result in values too small (less than 0) or too large (greater than 2 ^ N - 1) to be represented as a particular unsigned integer type.
@@ -87,8 +87,40 @@ void wraparound_example(void) {
 
 void infinit_loop(int n) {
     for (unsigned int i = n; i >= 0; --i) {
-        printf("%s\n", "WELCOME TO INFINITY!");
+        printf("%s\t%u\n", "WELCOME TO INFINITY! - i has the value ", i);
     }
 }
 
+// To avoid undefined behavior, It is important to check for wraparound by using the limits from <limits.h>.
+// You should be careful when implementing these checks, because it is easy to make mistakes.
 
+
+// NOTE: QUALITY COMPILERS MAY WARN ABOUT THIS MISTAKE.
+void wraparound_defect(void) {
+    unsigned int ui, sum;
+    if (sum + ui > UINT_MAX)
+        // too_big()
+        printf("%s\n", "too big");
+    else
+        sum += ui;
+
+
+    // sum + ui can NEVER be bigger than UINT_MAX
+}
+
+void wraparound_defect_2(void) {
+    unsigned int a, b;
+    if (a - b < 0)  // THIS CAN NEVER HAPPEN
+    {
+        printf("%s\n", "negative");
+        // NEGATIVE();
+    } else {
+        a = b - a; // or anything else
+    }
+}
+
+int main() 
+{
+    infinit_loop(3);
+    return EXIT_SUCCESS;
+}
