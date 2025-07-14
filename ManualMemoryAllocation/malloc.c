@@ -24,6 +24,20 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
+void allocate_for_array(void)
+{
+	char* x = malloc(20);	// this is indeed an array of 2000 chars. 
+	char* p = x;
+
+	// we should use memset to initialize our manually allocated array of chars.
+	memset(p, '0', (sizeof(char) * 20));
+	for (int i = 0; i < 20; ++i)
+		printf("[%p] --- [%c]\n", p, *p++);
+
+	free(x);
+}
 
 int main(void)
 {
@@ -58,6 +72,7 @@ int main(void)
 
 	printf("base pointer address -> [%p] - [%p]\n", c, temp);
 
+	allocate_for_array();
 	free(c);
 
 
