@@ -12,7 +12,7 @@
 // realloc() takes a pointer to some previously-allocated memory (by malloc or calloc)
 // and a new size for the memory region to be.
 
-// It then shrinks the region, it might return the same pointer or a different one, 
+// It then shrinks/or grows the region, it might return the same pointer or a different one, 
 // pointing to the same place.
 
 // NOTE: realloc wants the number of bytes to allocate, and not the number of elements.
