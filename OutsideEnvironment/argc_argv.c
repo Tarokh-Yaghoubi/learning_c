@@ -14,6 +14,9 @@
 int
 main(int argc, char **argv) {
 
+	// pointer to a pointer-to-char
+	// 
+
 	int total = 0;
 	int value = 0;
 	for (int i = 1; i < argc; i++) {
