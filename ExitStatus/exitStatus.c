@@ -14,6 +14,9 @@ int main(int argc, char **argv) {
 		return EXIT_FAILURE;
 
 	}
+	
+	int first = atoi(*(argv + 1));
+	printf("first is -> %d\n", first);
 
 	printf("%d\n", atoi(argv[1]) * atoi(argv[2]));
 	return EXIT_SUCCESS;
