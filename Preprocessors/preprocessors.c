@@ -16,6 +16,38 @@
 
 #define SQR(x) (x) * (x)
 
+// There is also a way that we can have variable length argument, using ellipses (...)
+// after the known, named arguments . When the macro is expanded all of the extra
+// arguments will be in a comma separated list in the __VA_ARGS__ macro, 
+// and can be replaced from there:
+
+#define X(a, b, ...) (10*(a) + 20*(b)), __VA_ARGS__
+
+// Stringification:
+// we can turn any argument to a string just by putting a pound sign infront of it:
+
+#define STR(x) #x	// This turns everything into string
+
+#define PRINT_INT_VAL(x) printf("%s = %d\n", #x, x)
+
+// CONCATENATION:
+// we can concat two argument together using two pound signs, ##
+
+#define CAT(a, b) a ## b
+
+
+// MULTILINE MACROS:
+// we can continue a MACRO to multiple lines if you escape an argument using 
+// "\" .
+
+#define PRINT_NUMS_TO_PRODUCT(x, y) do { \
+	int products = (x) * (y); \
+	for (int i = 0; i < products; i++) { \
+		printf("%d\n", i); \
+	} \
+} while(0)
+
+
 /*
  *	stdio.h
  *	
@@ -32,16 +64,23 @@
 
 #define NOTHING
 
+void undefineAMacro(void);
 
 int main() {
 	printf("FILENAME: %s, LINE: %d, FUNC: %s\n", __FILE__, __LINE__, __func__);
 	printf("DATE and TIME: %s %s\n", __DATE__, __TIME__);
 	printf("%s %f\n", HELLO, PI);
 	// printf("%s %f\n", hELLO wORLD, 3.14159);
-	
+	printf("%d %d\n", X(5, 4, 10));
 	int sqr_4 = SQR(12);
-	printf("SQR -> %ld\n", sqr_4);
+	printf("SQR -> %d\n", sqr_4);
+	undefineAMacro();
+	printf("%s\n", STR(3.14159));
+	PRINT_INT_VAL(sqr_4);
+	printf("%d\n", CAT(123, 456));
 	
+	PRINT_NUMS_TO_PRODUCT(2, 3);
+
 	return EXIT_SUCCESS;
 }
 
