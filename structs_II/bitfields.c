@@ -33,7 +33,16 @@ struct someSpaceSaving {
 	unsigned int d;
 };
 
-// Unnamed BitFields 
+// Unnamed BitFields
+// Here we use the top two bits and the bottom one bit, and we are not going to 
+// use the middle five bits 
+
+struct unnamedBits {
+
+	unsigned char a:2;
+	unsigned char :5;	// Unnamed bit-field
+	unsigned char b:1;
+};
 
 int main(void) {
 
@@ -42,5 +51,6 @@ int main(void) {
 	printf("%zu\n", sizeof(struct foo));
 	printf("%zu\n", sizeof(struct nonAdjacent));
 	printf("%zu\n", sizeof(struct someSpaceSaving)); // 12 on my system
+	printf("Unnamed bitfield size -> %zu\n", sizeof(struct unnamedBits));
 	return EXIT_SUCCESS;
 }
