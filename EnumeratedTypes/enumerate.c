@@ -19,7 +19,7 @@ int main(void) {
 		NET,
 		FIRST,
 		SECOND,
-		THIRD,i
+		THIRD,
 		FOURTH,
 		FIFTH=100
 
@@ -33,8 +33,27 @@ int main(void) {
 		ORE
 	};
 
+	// It is also possible to typedef these. 
+	
+	typedef enum {
+		SHEEP,
+		WHEAT,
+		WOOD,
+		BRICK,
+		KITCHEN,
+		BANANA,
+		CHICKEN
+	} RESOURCE;
+
+	RESOURCE res = WOOD;
+
+	if (res == WOOD) {
+		printf("\nWOOD\n");
+
+	}
 
 	enum resource r = BRICK;
+	
 	if (r == BRICK) {
 		printf("BRICK");
 	}
@@ -43,3 +62,5 @@ int main(void) {
 
 	return EXIT_SUCCESS;
 }
+
+
