@@ -34,6 +34,10 @@ int main(void) {
 	};
 
 
+	enum resource r = BRICK;
+	if (r == BRICK) {
+		printf("BRICK");
+	}
 
 	printf("%d %d\n", ONE, TWO);
 
