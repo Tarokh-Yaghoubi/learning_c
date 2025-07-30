@@ -22,6 +22,11 @@ int main() {
 	int **Fpptr = &fPtr;
 	printf("%p %p\n", Fpptr, &fPtr);
 
+	int *p = &a;
+	int **q = &p;
+	int ***r = &q;	// Pointer to Pointer to Pointer to Int.
+	int ****s = &r;
+	int *****t = &s;
 
 	return 0;
 
