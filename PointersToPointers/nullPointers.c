@@ -19,14 +19,18 @@ int main() {
 	}
 
 	volatile uint32_t *reg = (uint32_t *)(uintptr_t)REG_ADDRESS;
-	printf("REG VAL in mem : ld\n", *reg);
-	*reg = 0xDEADBEEF;	// One way to use pointer casting to uintptr_t
+	// *reg = 0xDEADBEEF;	// One way to use pointer casting to uintptr_t
 
 	printf("IF THE SEGMENTATION FAULT PASSES -> ");
 	int first = 3;
 	int* pptr = &first;
 	float* fpptr = (float *)&first;
-
+	printf("%f\n", *fpptr);	// This is working just fine, but it may never print the true value
+	
+	uintptr_t ptrval = (uintptr_t *)&first;
+	printf("%ld\n", (long)ptrval);
+	uintptr_t *ret = (uintptr_t *)ptrval;
+	printf("%ld\n", (long)*ret);	// wow it gives 3 again
 	return 0;
 
 }
