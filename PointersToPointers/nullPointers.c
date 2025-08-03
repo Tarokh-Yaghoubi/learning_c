@@ -1,7 +1,10 @@
 
+#define REG_ADDRESS 0x4000000
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdint.h>
 
 int main() {
 
@@ -15,6 +18,14 @@ int main() {
 		printf("ptr is null here\n");
 	}
 
+	volatile uint32_t *reg = (uint32_t *)(uintptr_t)REG_ADDRESS;
+	printf("REG VAL in mem : ld\n", *reg);
+	*reg = 0xDEADBEEF;	// One way to use pointer casting to uintptr_t
+
+	printf("IF THE SEGMENTATION FAULT PASSES -> ");
+	int first = 3;
+	int* pptr = &first;
+	float* fpptr = (float *)&first;
 
 	return 0;
 
