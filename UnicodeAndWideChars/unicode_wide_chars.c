@@ -18,11 +18,14 @@
  *		π(PI)        3C0        03C0     000003C0     C003      C0030000    CF80
  * */
 
-
+	// There is a way in C to specify unicode characters and these will get translated by the compiler to the execution
+	// character set. 
+	// Like the euro symbol [ 0x20AC ]
 
 int main() {
 
+	char* str = "\u20AC 1.23";
+	printf("EU Price -> %s\n", str);
 
-
-
+	return 0;
 }
