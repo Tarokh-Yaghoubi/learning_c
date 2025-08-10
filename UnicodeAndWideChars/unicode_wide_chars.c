@@ -27,5 +27,15 @@ int main() {
 	char* str = "\u20AC 1.23";
 	printf("EU Price -> %s\n", str);
 
+	// For Bigger unicodes ( bigger than 16 bits ), we use capital u, \U
+	char* str2 = "\U0001D4D1"; // mathematical B -> 𝓑
+
+	printf("%s\n", str2);
+	
+	// These two are the same \u03C0 == \U000003C0
+	
+	printf("\u0024\n");
+
 	return 0;
 }
+
