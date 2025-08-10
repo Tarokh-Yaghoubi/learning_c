@@ -16,6 +16,23 @@ void func(int first, ...) {
 	
 }
 
+int playground(char* firstname, int nums, ...) {
+
+	va_list va;
+	va_start(va, nums);
+
+	printf("%s\n", firstname);
+
+	for (int i = 0; i < nums; ++i) {
+		int n = va_arg(va, int);
+		printf("%d ", n);
+	}
+
+	va_end(va);
+
+	return EXIT_SUCCESS;
+}
+
 int add(int count, ...) {
 	// sum all the numbers you get from params together
 	int total = 0;
@@ -44,6 +61,8 @@ main() {
 	printf("SUM 1 -> %d\n", add(5, 1, 2, 3, 4, 5));
 	printf("SUM 2 -> %d\n", add(2, 25, 26));
 
+	playground("Tarokh", 5, 1, 2, 3, 4, 6);
+	printf("\n");
 	return EXIT_SUCCESS;
 }
 
