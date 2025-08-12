@@ -25,10 +25,11 @@
 	// character set. 
 	// Like the euro symbol [ 0x20AC ]
 
-int main() {
-
+int
+main(void) {
 
 	char* str = "\u20AC 1.23";
+
 	printf("EU Price -> %s\n", str);
 
 	// For Bigger unicodes ( bigger than 16 bits ), we use capital u, \U
@@ -63,12 +64,12 @@ int main() {
 	printf("\u0024\n");
 
 	// printf() variants allow for a way to only print some specific bytes of a string. like %.12s as an example
-
 	// Strings: are multibyte strings made up of multibyte characters.
 	// C string -> C Multibyte String
 	// Even if the data in a String are single byte, and it's made up of single-byte characters, it is still called multi-byte
 	
 	char c[128] = "Hello, Jacob is here";	// Multibyte String
+	
 	char* s = "\u20AC1.23";
 	printf("%zu\n", strlen(s)); // this is 7 on my system, remember that strlen returns the number of bytes in a string, 
 				    // not the number of characters
@@ -76,9 +77,21 @@ int main() {
 	printf("LEN3 IS -> %d\n", len3);	// now here len is 5
 
 	wchar_t wch[10];	// if your system is using UTF-32, each element is a fixed 4-byte, so one array element == one Unicode Character
+
 	// A wide character is a single value that can uniquely represent any character in the current locale.
 	
-	// wchar_t is like char, but it is wide 
+	// wchar_t is like char, but it is wide
+	
+	// to use wchar_t, include <wchar.h>
+	
+	// %ls and %lc for an individual wide char.
+	
+	wchar_t *lls = L"Jacob";
+	wchar_t oneWideChar = L'B';
+	printf("%ls\t%lc\t%lc\n", lls, lls[0], oneWideChar);
+
+	size_t len4 = wcstombs(NULL, lls, 20);	// this would be 5
+	printf("%d\n", len4);
 
 	return 0;
 }
