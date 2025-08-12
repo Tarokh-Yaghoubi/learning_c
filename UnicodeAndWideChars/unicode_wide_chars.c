@@ -54,11 +54,31 @@ int main() {
 	
 	wchar_t wbuf[20];
 
-	size_t len = mbstowcs(wbuf, utf8_japanese, 20);
-	size_t len2 = mbtowcs
-	printf("mbstowcs len => [%zu]\n", len);
+	size_t len = mbstowcs(wbuf, utf8_japanese, 20);	// wbuf now contains the converted string
+	
+	size_t len2 = mbstowcs(NULL, utf8_japanese, 20); // it does not copy anything, it will just return the len
+
+	printf("mbstowcs len => [%zu][%zu]\n", len, len2);
 
 	printf("\u0024\n");
+
+	// printf() variants allow for a way to only print some specific bytes of a string. like %.12s as an example
+
+	// Strings: are multibyte strings made up of multibyte characters.
+	// C string -> C Multibyte String
+	// Even if the data in a String are single byte, and it's made up of single-byte characters, it is still called multi-byte
+	
+	char c[128] = "Hello, Jacob is here";	// Multibyte String
+	char* s = "\u20AC1.23";
+	printf("%zu\n", strlen(s)); // this is 7 on my system, remember that strlen returns the number of bytes in a string, 
+				    // not the number of characters
+	size_t len3 = mbstowcs(NULL, s, 10);
+	printf("LEN3 IS -> %d\n", len3);	// now here len is 5
+
+	wchar_t wch[10];	// if your system is using UTF-32, each element is a fixed 4-byte, so one array element == one Unicode Character
+	// A wide character is a single value that can uniquely represent any character in the current locale.
+	
+	// wchar_t is like char, but it is wide 
 
 	return 0;
 }
