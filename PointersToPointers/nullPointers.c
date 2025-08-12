@@ -19,7 +19,7 @@ int main() {
 	}
 
 	volatile uint32_t *reg = (uint32_t *)(uintptr_t)REG_ADDRESS;
-	// *reg = 0xDEADBEEF;	// One way to use pointer casting to uintptr_t
+	*reg = 0xDEADBEEF;	// One way to use pointer casting to uintptr_t
 
 	printf("IF THE SEGMENTATION FAULT PASSES -> ");
 	int first = 3;
