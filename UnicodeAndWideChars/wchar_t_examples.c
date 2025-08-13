@@ -32,5 +32,15 @@ int main(void) {
 	size_t len = wcslen(wc_string);
 	printf("wclen of wc_string is -> [%ld]\n", (long)len);
 
+	// wint_t is used when taking one wc.
+	
+	wint_t wc;
+	while ((wc = fgetwc(stdin)) != WEOF) {
+		if (wc == 'x')
+			break;
+
+		putwchar(wc);
+	}
+
 	return EXIT_SUCCESS;
 }
