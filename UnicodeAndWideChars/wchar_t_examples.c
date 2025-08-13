@@ -42,5 +42,13 @@ int main(void) {
 		putwchar(wc);
 	}
 
+	// If you are adding an mbstate_t variable to pass in your own mbstate_t for avoiding race conditions
+	// while writing multi-threaded programs. 
+	// you can just define it and use memset to fill it with zero.
+	
+	mbstate_t mbs;
+	memset(&mbs, 0, sizeof(mbs));	// this is fine
+
+
 	return EXIT_SUCCESS;
 }
