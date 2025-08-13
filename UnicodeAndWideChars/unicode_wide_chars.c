@@ -88,10 +88,16 @@ main(void) {
 	
 	wchar_t *lls = L"Jacob";
 	wchar_t oneWideChar = L'B';
+	
 	printf("%ls\t%lc\t%lc\n", lls, lls[0], oneWideChar);
 
 	size_t len4 = wcstombs(NULL, lls, 20);	// this would be 5
 	printf("%d\n", len4);
+
+	// mbtowc => multibyte character to wide character
+	// wctomb => wide character to multi byte
+	// mbstowcs => multibyte string to wide character string
+	// wcstombs => wide character string to multibyte string
 
 	return 0;
 }
