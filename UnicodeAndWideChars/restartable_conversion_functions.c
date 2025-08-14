@@ -36,7 +36,6 @@ int main(void)
 	const char* invalid  = mb_string;
 
 	size_t wc_len = mbsrtowcs(wc_string, &invalid, 128, &mbs);
-
 	if (invalid == NULL) {
 		printf("no invalid characters found\n");
 		printf("multibyte: \"%s\" (%zu bytes)\n", mb_string, mb_len);
