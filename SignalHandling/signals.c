@@ -28,16 +28,18 @@
 
 #include <signal.h> // This is necessary
 
+void signum(int num) {
+	printf("SIGNUM Is -> %d\n", num);
+}
 
 int main() {
 
 	char s[1024];
-
-	signal(SIGINT, SIG_IGN);	// just ignore the SIGINT signal which is CTRL-c
+	
+	signal(SIGINT, signum);	// just ignore the SIGINT signal which is CTRL-c
 	
 	printf("Try hitting CTRL-c ... \n");
 
 	fgets(s, sizeof(s), stdin);
 }
-
 
