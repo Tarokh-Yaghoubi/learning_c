@@ -46,7 +46,16 @@ void handler2(int signal) {
 	atomic_fetch_add(&counter, 1);	// safe in signal handler if lock free
 }
 
-int main() {
+void sigint_handler(int signum) {
+
+	(void)signum;
+	signal(SIGINT, sigint_handler);
+	flag++;	// Undefined Behaviour - Reading/Writing on a volatile individually is safe.
+		// but doing ++ inside a signal handler has the possibility of lost-updates.
+	write(STDOUT_FILENO, "\n", 1);
+}
+
+int main_2() {
 	signal(SIGINT, handler);
 	while (!flag) {
 	// printf("WORK \n"); -> Here's the problem
@@ -55,6 +64,12 @@ int main() {
 
 	printf("Got SIGINT\n");
 	
+}
+
+int main() {
+	signal(SIGINT, sigint_handler);
+	printf("Hit ^C twice to exit.\n");
+	while (flag < 2);
 }
 
 //  because printf() internally uses global buffers, locks, memory allocation, etc.
