@@ -38,3 +38,56 @@ int main() {
 	return 0;
 }
 
+// Some restrictions:
+// 1- You cannot declare a VLA at file scope, and you cannot make a static one in the block scope.*
+// 2- You cannot use an initializer list to initialize the array.
+// 3- Also entering a negative value for the size of the array invokes undefined behaviour.
+// * - This is due to how VLAs are typically allocated on the stack, whereas static variables are on the heap. 
+// and the whole idea with VLAs is the will be automatically deallocated when the stack frame is popped at the end of the function.
+
+// sizeof and VLAs.
+
+void sizeof_and_vlas() {
+	
+	int n;
+	char buf[32];
+
+	printf("Enter a number: \n");
+	fflush(stdout);
+
+	fgets(buf, sizeof(buf), stdin);
+	n = strtoul(buf, NULL, 10);
+
+	int arr[n];
+
+	for (int i = 0; i < n; i++)
+		arr[i] = i * n;
+
+	size_t size = sizeof(arr) / sizeof(arr[0]);
+
+	printf("SIZE -> %zu\n", size);
+}
+
+// you must watchout when using goto near VLAs because a lot of things are not legal.
+// also when you are using longjmp() there is a case that you could leak memory with VLAs.
+
+/*
+
+GENERAL ISSUES:
+
+VLAs have been banned from the Linux kernel for a few reasons:
+
+	• Lots of places they were used should have just been fixed-size.
+	• The code behind VLAs is slower (to a degree that most people wouldn’t notice, but makes a difference
+	in an operating system).
+	• VLAs are not supported to the same degree by all C compilers.
+	• Stack size is limited, and VLAs go on the stack. If some code accidentally (or maliciously) passes a
+
+large value into a kernel function that allocates a VLA, Bad Things™ could happen.
+Other folks online point out that there’s no way to detect a VLA’s failure to allocate, and programs that
+suffered such problems would likely just crash. While fixed-size arrays also have the same issue, it’s far
+more likely that someone accidentally make a VLA Of Unusual Size than somehow accidentally declare a
+fixed-size, say, 30 megabyte array.
+
+*/
+
