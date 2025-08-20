@@ -1,6 +1,12 @@
 
 #include "../requirements.h"
 
+#define TYPESTR(x) _Generic((x), \
+int: "int", \
+long: "long", \
+float: "float", \
+double: "double", \
+default: "something else")
 
 int main() {
 
@@ -16,6 +22,7 @@ int main() {
 			);
 
 	printf("%s\n", s);
-
+	printf("i is type -> %s\n", TYPESTR(i));
+	printf("f is type -> %s\n", TYPESTR(f));
 	return EXIT_SUCCESS;
 }
