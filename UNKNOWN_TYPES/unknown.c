@@ -26,6 +26,14 @@ struct node {
 // but we can declare a pointer to one, even if it is incomplete.
 // NOTE: this is the same thing when two structures refer to eachother.
 
+// NOTE:
+/*
+ * 	THIS WORKS BECAUSE IN C, POINTERS ARE THE SAME SIZE REGARDLESS
+ *	ON WHAT THEY ARE POINTING TO. SO THE COMPILER DOES NOT NEED TO
+ *	KNOW THE SIZE OF THE STRUCT NODE AT THIS POINT, IT JUST NEEDS TO
+ *	KNOW THE SIZE OF A POINTER.
+ * */
+
 int main() {
 
 	// This Compiles without an error...
