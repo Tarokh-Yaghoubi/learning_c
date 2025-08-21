@@ -5,6 +5,12 @@
 
 
 #include "../requirements.h"
+#include "bar.h"	// now i included bar.h,
+			// and because i have declared the array in a separate 
+			// header file as an incomplete type
+			// and then I have defined it once in its .c file
+			// Now I can have access to the same array in whatever file
+			// i include its header. now I have a shared array...
 
 extern int a[];
 
@@ -41,11 +47,13 @@ int main() {
 	struct foo *x;
 	union bar *y;
 	enum baz *z;
-	
+
 	// these are examples of incomplete types.
 	// an incomplete type is a type that its size is unknown
 	// you can have a pointer to an incomplete type, but you cannot dereference 
 	// it, you cannot get its size, or use pointer arithmetic on it.
 	// and you cannot sizeof it.
+	arr[0] = 23;
+	printf("%d\t%zu\n", arr[0], sizeof(arr[0]));
 }
 
