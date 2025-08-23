@@ -26,5 +26,33 @@ int main() {
 	time(&now);	// or like this
 	printf("%s\n", ctime(&now));
 
+	// Converting time_t to struct tm
+	// localtime(), this function converts a time_t to a struct tm in local time.
+	// gmtime(), this function converts a time_t to struct tm in UTC. 
+
+	printf("LOCAL -> %s\n", asctime(localtime(&now)));
+	printf("	UTC: %s\n", asctime(gmtime(&now)));
+
+	// here we have a struct which we can print each part of it. 
+	
+	// CONVERTING struct tm TO time_t
+	
+	// you can use mktime() to go the other way.
+	// mktime() just sets the values of tm_wday and tm_yday for you.
+	// so do not bother filling them out because they'll just be overwritten.
+	// Also you can set tm_isdst to -1, to have it make the determination for you.
+	// Or you can manually set it to true or false.
+	
+	struct tm some_time = {
+
+		.tm_year = 82,
+		.tm_mon = 3,
+		.tm_mday = 12,
+
+
+	};
+
 	return EXIT_SUCCESS;
+
 }
+
