@@ -32,7 +32,11 @@ int main() {
 	// If you have a constant that you want to have fit in a certain number of bits,
 	// you cna use these macros to automatically append the proper suffix onto the number
 	// like INT8_C(x), UINT16_C(x), INTMAX_C(x);
+	
+	maxInt = INTMAX_C(first);
+	uint16_t ff = UINT16_C(2342);
 
 	return EXIT_SUCCESS;
+
 }
 
