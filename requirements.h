@@ -10,5 +10,6 @@
 #include <unistd.h>
 #include <setjmp.h>
 #include <limits.h>
+#include <time.h>
 
 #endif
