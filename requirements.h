@@ -6,7 +6,9 @@
 #include <stdlib.h>
 #include <signal.h>
 #include <string.h>
+#include <stdint.h>
 #include <unistd.h>
 #include <setjmp.h>
+#include <limits.h>
 
 #endif
