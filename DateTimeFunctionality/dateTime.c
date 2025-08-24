@@ -48,9 +48,18 @@ int main() {
 		.tm_year = 82,
 		.tm_mon = 3,
 		.tm_mday = 12,
-
+ 		.tm_hour=12,
+		.tm_min=0,
+		.tm_sec=4,
+		.tm_isdst=-1,
 
 	};
+
+	time_t some_time_epoch;
+
+	some_time_epoch = mktime(&some_time);
+	printf(" %s", ctime(&some_time_epoch));
+	printf("\n is DST: %d\n", some_time.tm_isdst);
 
 	return EXIT_SUCCESS;
 
