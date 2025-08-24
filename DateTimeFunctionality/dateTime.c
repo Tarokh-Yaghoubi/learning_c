@@ -61,6 +61,15 @@ int main() {
 	printf(" %s", ctime(&some_time_epoch));
 	printf("\n is DST: %d\n", some_time.tm_isdst);
 
+	// Formatted Date Output
+	time_t now_1 = time(NULL);
+	struct tm *local = localtime(&now);
+	struct tm *utc = gmtime(&now);
+
+	printf("LOCAL TIME -> %s\n", ctime(&now));
+	printf("LOCAL TIME: %s\n", asctime(local));
+	printf("UTC	:%s\n", asctime(utc));
+
 	return EXIT_SUCCESS;
 
 }
