@@ -84,6 +84,13 @@ int main() {
 	// %d -> day of the month
 	strftime(s, sizeof(s), "%A, %B, %d", localtime(&now));
 
+	// %I: hour (12 hour clock)
+	// %M: minute
+	// %S: second 
+	// %p: AM or PM
+	strftime(s, sizeof(s), "It's %I:%M:%S %p", localtime(&now));
+	puts(s);
+
 	// 
 
 	return EXIT_SUCCESS;
