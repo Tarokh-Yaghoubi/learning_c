@@ -1,0 +1,26 @@
+
+#include "../requirements.h"
+
+
+// C11, introduced multithreading to the C language.
+// It is very similar to POSIX threads.
+// If a C11+ compiler defines __STDC_NO_THREADS__, threads will not be 
+// present in the library.
+
+#ifdef __STDC_NO_THREADS__
+#error I need threads to build this program! 
+#endif
+
+// Also you might need to specify certain linker options when building. In the case of 
+// Unix-likes, try appending a -lpthreads to the end of the command line to link
+// the pthreads library.
+// gcc -std=c11 -o foo foo.c -lpthreads
+//
+// If you get linker errors, that could be because the appropriate library is not imported
+
+
+int main() {
+
+
+	return EXIT_SUCCESS;
+}
