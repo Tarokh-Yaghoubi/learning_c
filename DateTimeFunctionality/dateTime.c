@@ -55,6 +55,7 @@ int main() {
 
 	};
 
+	char s[128];
 	time_t some_time_epoch;
 
 	some_time_epoch = mktime(&some_time);
@@ -69,6 +70,21 @@ int main() {
 	printf("LOCAL TIME -> %s\n", ctime(&now));
 	printf("LOCAL TIME: %s\n", asctime(local));
 	printf("UTC	:%s\n", asctime(utc));
+
+	// There's a much better and a way that we can have more control over the print 
+	// as well.
+	// strftime(), this is like printf() but for dates.
+	
+
+	strftime(s, sizeof(s), "%c", localtime(&now));
+	puts(s);
+
+	// %A -> full weekday name
+	// %B -> full month name 
+	// %d -> day of the month
+	strftime(s, sizeof(s), "%A, %B, %d", localtime(&now));
+
+	// 
 
 	return EXIT_SUCCESS;
 
