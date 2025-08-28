@@ -24,6 +24,8 @@
 int run(void * arg) {
 
 	int a = *(int*)arg;
+	
+	free(arg);
 
 	printf("THREAD: running thread with arg -> %d\n", a);
 
@@ -40,15 +42,20 @@ int main(void) {
 	// you'll leak memory,
 	// unless you call thrd_detach()
 
+	// instead of this array i could use malloc()
+	
+	// int tp[THREAD_COUNT];
 	thrd_t t[THREAD_COUNT];
 	int i;
 
 	printf("Launching threads... \n");
 
-	for (i = 0; i < THREAD_COUNT; i++)
-		thrd_create(t + i, run, &i);
-
-
+	for (i = 0; i < THREAD_COUNT; i++) {
+		int* arg = malloc(sizeof(*arg));
+		*arg = i;	
+		thrd_create(t + i, run, arg);
+	
+	}
 
 	printf("Doing other things while the thread runs... \n");
 	printf("Waiting threads to complete ... \n");
@@ -56,7 +63,7 @@ int main(void) {
 	for (int i = 0; i < THREAD_COUNT; i++) {
 		int res;
 		thrd_join(t[i], &res);
-
+		printf("T data -> %ld\n", (long)t[i]);
 		printf("THREAD %d completed...\n", res);
 	}
 
