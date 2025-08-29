@@ -1,0 +1,13 @@
+Thread: 1, X = 10, foo = 10
+Thread: 2, X = 11, foo = 11
+Thread: 3, X = 12, foo = 12
+Thread: 0, X = 12, foo = 12
+-- CONTEXT SWITCH APPEARS HERE --
+Thread 4: foo++; // foo becomes 13
+-- CONTEXT SWITCH BACK TO THREAD 0 --
+Thread 0: Craziness! x != foo! 12 != 13 // now they're not equal anymore 
+
+Thread: 4, X = 14, foo = 14
+
+
+// Thread 0 was unlucky, context switch was in the wrong timing
