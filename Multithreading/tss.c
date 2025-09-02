@@ -67,7 +67,8 @@ int main() {
 	for (int i = 0; i < THREAD_MAX; i++) {
 		thrd_join(t[i], NULL);
 	}
-	
+
+	// We're done with this when all the threads are done.
 	tss_delete(str);
 
 }
